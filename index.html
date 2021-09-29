@@ -4,26 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group Project Coffee Shop</title>
+    <title>CoffeeShop Group Assignment</title>
 </head>
 <body>
     
     <div>
-        <label for = "coffees">Choose your Type of Coffee:</label>
-        <select name = "coffees"select id= "coffees">
-            <option value = "1">Brygg Kaffe</option>
-            <option value = "2">Cappucino</option>
-            <option value = "3">Latte</option>
-        </select>
+        <label for = "menu">Choose your Type of Coffee:</label>
+        <select name = "menu" select id ="menu"></select>
         <label for = "numberOfCups"></label>
         <input id = "numberOfCups"></input>
         <button onclick ="onBuyButtonClick()">Buy</button>
-        <p id = "sum">No Transactions Registered</p>
+        <p id = "sum">You have spent: 0kr</p>
         <p id = "membershipStatus">Membership Status: Bronze</p>
     <hr></hr>
     </div> 
-
-    <h1>Transactions:</h1>
+    <h1 id= "heading">No transactions Registered.</h1>
     <div id="root">
         
     </div>
