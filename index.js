@@ -1,5 +1,5 @@
 /* 
-    Coffee Shop Group Project
+    Coffeeshop Group Project
     Panos, Anna, Amanda
 */
 
@@ -55,7 +55,7 @@ class Customer {
         this.sum = 0
     }
 
-    //Creates a new Cup of coffee and gets the price of that cup
+    //Creates a new Cup of coffee and gets the price of that cup.
     newCupOfCoffee(type) {
         const cup = new Coffee(type)
         cup.getPrice()
@@ -90,7 +90,7 @@ class Customer {
         This creates a temptransaction from the createTransaction method and uses its values to update
         the sum and totalNumberOfCups of the customer. It then pushes the transaction into our main transactions
         array through the unshift method moving all transactions lower in the array.
-        After the transaction is complete it then updates membership status and the transactions in our html
+        After the transaction is complete it then updates membership status and the transactions in our html.
     */
     addTransaction(typeOfCoffee, numOfCups) {
         let tempTransaction = this.createTransaction(typeOfCoffee, numOfCups)
@@ -101,7 +101,7 @@ class Customer {
         updateTransactionList()
     }
     
-    // This checks totalNumberOfCups and updates html of membership status and sum 
+    // This checks totalNumberOfCups and updates html of membership status and sum.
     updateMembershipStatusAndSum() {
         console.log(this.totalNumberOfCups)
         if (this.totalNumberOfCups >= 10 && this.totalNumberOfCups < 30) {
@@ -114,13 +114,13 @@ class Customer {
     }
 }
 
-//Updates the select tag
+//Updates the select tag.
 updateSelectTag()
 
-//Creates a customer
+//Creates a customer.
 let customer1 = new Customer()
 
-//Updates the transactions HTML to display current transactions from our array
+//Updates the transactions HTML to display current transactions from the array.
 function updateTransactionList() {
     document.getElementById("root").innerHTML = "";
     const parent = document.getElementById("root")
@@ -134,21 +134,21 @@ function updateTransactionList() {
     parent.appendChild(transaction)
 }
 
-//Checks number of cups is more than zero, returns true if input is valid
+//Checks number of cups is more than zero, returns true if input is valid.
 function isMoreThanZero() {
     const inputValue = document.getElementById("numberOfCups").value
     console.log(inputValue > 0)
     return inputValue > 0
 }
 
-//Checks if number of cups is less than 11, returns true if input is valid
+//Checks if number of cups is less than 11, returns true if input is valid.
 function isLessThanTen() {
     const inputValue = document.getElementById("numberOfCups").value
     console.log(inputValue <= 10)
     return inputValue <= 10
 }
 
-//This sends the appropriate alert according to whats wrong with the input
+//This sends the appropriate alert according to whats wrong with the input.
 function sendAlert(input) {
     if (input > 10) {
         alert("Max 10 cups per transaction!")
