@@ -16,8 +16,10 @@ function updateSelectTag() {
         var parent = document.getElementById("menu")
         var opt = document.createElement("option")
         opt.text = `${element.name} - ${element.price}kr/cup`
+        opt.id = element.name
         opt.name = element.name
         parent.appendChild(opt)
+        console.log(opt)
     })
 }
 
@@ -50,7 +52,7 @@ class Coffee {
 class Customer {
     constructor() {
         this.transactions = []
-        this.membership = "Bronze"
+        this.membership = `BRONZE`
         this.totalNumberOfCups = 0
         this.sum = 0
     }
@@ -103,15 +105,19 @@ class Customer {
     
     // This checks totalNumberOfCups and updates html of membership status and sum.
     updateMembershipStatusAndSum() {
-        console.log(this.totalNumberOfCups)
+        const ele = document.getElementById("memberShipStatus")
+            
         if (this.totalNumberOfCups >= 10 && this.totalNumberOfCups < 30) {
-            this.membership = "Silver"
+            this.membership = "SILVER"
+            document.getElementById("membershipStatus").style.color = "rgb(151,151,151);"
         } else if (this.totalNumberOfCups >= 30) {
-            this.membership = "Gold"
+            this.membership = "GOLD"
+            document.getElementById("membershipStatus").style.color = "rgb(226, 194, 12);"
         }
-        document.getElementById("membershipStatus").innerHTML = `Membership Status: ${this.membership}`
-        document.getElementById("sum").innerHTML = `You have spent: ${this.sum} kr.`
+        document.getElementById("membershipStatus").innerHTML = `<span class ="goldText1">${this.membership}</span>`
+        document.getElementById("sum").innerHTML = `<span class ="goldText2">${this.sum}kr.</span>`
     }
+   
 }
 
 //Updates the select tag.
@@ -168,6 +174,7 @@ function getInput() {
     customer1.addTransaction(value, input)
     updateTransactionList()
 }
+
 /* 
     This is what triggers on the button click. It either getsInfo if isMoreThanZero returns the 
     same as IsLessThanTen or sends the numberOfcups value from our html to the CheckInput function.
@@ -179,4 +186,48 @@ function onBuyButtonClick() {
     } else {
         sendAlert(document.getElementById("numberOfCups").value)
     }
+    console.log(customer1.sum)
+    const test = document.getElementById("menu")
+    console.log(test.options[test.selectedIndex].name)
 }
+
+/* 
+Extra fun Coding
+*/
+function repairTag(input, price){
+        var parent = document.getElementById("menu")
+        var opt = document.createElement("option")
+        opt.text = `${input} - ${price}kr/cup`
+        opt.id = input
+        opt.name = input
+        parent.appendChild(opt)
+}
+
+
+function populatefooter(){
+  
+    typesOfCoffee.forEach(element => {
+        var prnt = document.getElementById("footerButtons")
+        const myButton = document.createElement("button")
+        myButton.innerHTML =`${element.name} - ${customer1.getDiscount(element.price)}kr`
+        myButton.className = "button"
+        myButton.type = "submit"
+        myButton.id = element.name
+        myButton.style.backgroundColor = "rgb(14, 116, 14)"
+        myButton.addEventListener("click", () => {
+            var comp = myButton.style.backgroundColor;
+            if(comp == "rgb(173, 36, 36)"){
+                repairTag(element.name,element.price)
+                myButton.style.backgroundColor = "rgb(14, 116, 14)"
+            }else if(comp == "rgb(14, 116, 14)"){
+                rem = document.getElementById(element.name)
+                rem.remove()
+                myButton.style.backgroundColor = "rgb(173, 36, 36)"       
+            }; 
+        }) 
+        prnt.appendChild(myButton)
+    })
+}
+populatefooter()
+
+
