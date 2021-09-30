@@ -4,24 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
     <title>CoffeeShop Group Assignment</title>
 </head>
 <body>
-    
-    <div>
+    <div id ="top" class= "head">
+        <div style = "align-content: center;">
         <label for = "menu">Choose your Type of Coffee:</label>
         <select name = "menu" select id ="menu"></select>
         <label for = "numberOfCups"></label>
         <input id = "numberOfCups"></input>
-        <button onclick ="onBuyButtonClick()">Buy</button>
-        <p id = "sum">You have spent: 0kr</p>
-        <p id = "membershipStatus">Membership Status: Bronze</p>
-    <hr></hr>
+        <button onclick ="onBuyButtonClick()" class= "button">Buy</button>
+    </div>
+    <div>
+        <p> Membership Status:  <span id = "membershipStatus" class ="goldText1" style = "color:#99724C;">BRONZE</span>
+           <span style= "padding-left: 125px;"> You have spent:<span id= "sum" class ="goldText2"> 0kr</span></span></p>
+    </div>
+    <div>
+        <hr class = "rounded"></hr>
+        <h1 id= "heading" class="tab" style = "padding-top:0%;">No transactions Registered.</h1>
     </div> 
-    <h1 id= "heading">No transactions Registered.</h1>
-    <div id="root">
-        
+    <div id="root" class= "root"></div>
+    <div class = "footer">
+        <p style ="color:white;">
+            Current Menu items (click to remove from array):</p>
+        <div id= "footerButtons"></div>
     </div>
     <script src ="index.js"></script>
-</body>
+</body> 
 </html>
