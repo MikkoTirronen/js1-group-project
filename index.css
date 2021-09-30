@@ -1,0 +1,69 @@
+/* 
+    Css for my index.
+*/
+.head{
+    position: top;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    border: none;
+    background-color:rgb(51, 62, 73);
+    color: rgb(230, 232, 240);
+    padding-left: 20%;
+    padding-bottom: 1px;
+    padding-top: 20px;
+
+}
+p{
+    color:whitesmoke;
+}
+body{
+    background-color:rgb(48, 104, 146); 
+}
+.goldText1{
+    font-size: 30px;
+    font-weight: bold;
+    
+}
+.goldText2{
+    font-size: 30px;
+    font-weight: bold;
+    color:#e7e0d8;
+}
+hr.rounded{
+    border-top: 8px solid #bbb; 
+    border-radius: 5px
+}
+.tab{
+    
+    color: whitesmoke;
+}
+.footer{
+    position: fixed;
+    width: 100%;
+    height: 15%;
+    left: 0;
+    bottom: 0;
+    background-color:rgb(51, 62, 73);
+    padding-left: 20%;
+}
+.root{
+    position: fixed;
+    align-self: center;
+    width: 95%;
+    height: 55%;
+    overflow:auto;
+    left: 0;
+    text-align: center;
+    background-color:rgb(48, 104, 146);
+}
+.button{
+    background-color: #0e740e;
+    padding: 10px 32px;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-spacing: 5px;
+    text-decoration: none;
+}
