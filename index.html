@@ -8,27 +8,30 @@
     <title>CoffeeShop Group Assignment</title>
 </head>
 <body>
-    <div id ="top" class= "head">
-        <div style = "align-content: center;">
+    
+    <div id= container class="container">
+    <div id ="top" class= "header">
         <label for = "menu">Choose your Type of Coffee:</label>
-        <select name = "menu" select id ="menu"></select>
+        <select name = "menu" select id ="menu" style="display:inline-block"></select>
         <label for = "numberOfCups"></label>
         <input id = "numberOfCups"></input>
         <button onclick ="onBuyButtonClick()" class= "button">Buy</button>
     </div>
     <div>
-        <p> Membership Status:  <span id = "membershipStatus" class ="goldText1" style = "color:#99724C;">BRONZE</span>
-           <span style= "padding-left: 125px;"> You have spent:<span id= "sum" class ="goldText2"> 0kr</span></span></p>
+        <p> Membership Status:  <span id = "membershipStatus" class ="bronzeText" >BRONZE</span>
+           <span style= "padding-left: 125px;"> You have spent:<span id= "sum" class ="largeText"> 0kr</span></span></p>
     </div>
+    <hr style= "border-top: 8px solid #bbb; border-radius: 5px"></hr>
     <div>
-        <hr class = "rounded"></hr>
-        <h1 id= "heading" class="tab" style = "padding-top:0%;">No transactions Registered.</h1>
+        <h1 id= "heading" class="tab" >No transactions Registered.</h1>
     </div> 
-    <div id="root" class= "root"></div>
+    
+    <div id="root" class= "root" style= "z-index: 2;"></div>
     <div class = "footer">
         <p style ="color:white;">
             Current Menu items (click to remove from array):</p>
         <div id= "footerButtons"></div>
+    </div>
     </div>
     <script src ="index.js"></script>
 </body> 
