@@ -7,7 +7,8 @@
 let typesOfCoffee = [
     { name: 'Brygg Kaffe', price: 20 },
     { name: 'Cappucino', price: 30 },
-    { name: 'Latte', price: 40 }
+    { name: 'Latte', price: 40 },
+    { name: 'Shoes', price: 200}
 ]
 
 //This function updates our html select tag in index.html with values from the typesOfCoffee array
@@ -105,16 +106,16 @@ class Customer {
     
     // This checks totalNumberOfCups and updates html of membership status and sum.
     updateMembershipStatusAndSum() {
-        const ele = document.getElementById("memberShipStatus")
+        const status = document.getElementById("membershipStatus")
             
         if (this.totalNumberOfCups >= 10 && this.totalNumberOfCups < 30) {
             this.membership = "SILVER"
-            document.getElementById("membershipStatus").style.color = "rgb(151,151,151);"
+            status.className= "silverText"
         } else if (this.totalNumberOfCups >= 30) {
             this.membership = "GOLD"
-            document.getElementById("membershipStatus").style.color = "rgb(226, 194, 12);"
+            status.className = "goldText"
         }
-        document.getElementById("membershipStatus").innerHTML = `<span class ="goldText1">${this.membership}</span>`
+        status.innerHTML = `<span class ="goldText1">${this.membership}</span>`
         document.getElementById("sum").innerHTML = `<span class ="goldText2">${this.sum}kr.</span>`
     }
    
@@ -160,6 +161,8 @@ function sendAlert(input) {
         alert("Max 10 cups per transaction!")
     } else if (input < 1) {
         alert("Please enter a Valid number!")
+    }else{
+    hideErrorMsg();
     }
 }
 
@@ -186,9 +189,8 @@ function onBuyButtonClick() {
     } else {
         sendAlert(document.getElementById("numberOfCups").value)
     }
-    console.log(customer1.sum)
     const test = document.getElementById("menu")
-    console.log(test.options[test.selectedIndex].name)
+
 }
 
 /* 
@@ -202,7 +204,6 @@ function repairTag(input, price){
         opt.name = input
         parent.appendChild(opt)
 }
-
 
 function populatefooter(){
   
