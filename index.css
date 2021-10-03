@@ -21,7 +21,7 @@ margin: auto;
 }
 p{
     color:whitesmoke;
-    
+    font-size: 16px;  
 }
 body{
     
@@ -46,15 +46,15 @@ body{
     font-size: 30px;
     font-weight: bold;
     color:gold;
+    padding-left: 20px;
 }
 .largeText{
     font-size: 30px;
     font-weight: bold;
     color:#e7e0d8;
+    padding-left: 10px;
 }
-
 .tab{
-    
     color: whitesmoke;
 }
 .footer{
