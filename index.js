@@ -8,26 +8,9 @@ let typesOfCoffee = [
     { name: 'Brygg Kaffe', price: 20 },
     { name: 'Cappucino', price: 30 },
     { name: 'Latte', price: 40 },
-    { name: 'Shoes', price: 200}
+    //{ name: 'Shoes', price: 200}
 ]
 
-//This function updates our html select tag in index.html with values from the typesOfCoffee array
-function updateSelectTag() {
-    typesOfCoffee.forEach(element => {
-        var parent = document.getElementById("menu")
-        var opt = document.createElement("option")
-        opt.text = `${element.name} - ${element.price}kr/cup`
-        opt.id = element.name
-        opt.name = element.name
-        parent.appendChild(opt)
-        console.log(opt)
-    })
-}
-
-//Changes transaction heading tag
-function updateTransactionHeading(){
-    document.getElementById("heading").innerHTML = "Your Transactions:"
-}
 /* 
     Here is our Coffee class with an input parameter that we will use to take in a menu item later.
     This also has a priceOfInput variable that we will use to update the price of the menu items.
@@ -79,7 +62,7 @@ class Customer {
         return newPrice
     }
     /* 
-        A function that creates a cup of coffee and gets the price through the getPrice method.
+        A function that creates a cup of coffee and gets the price through the getPrice() method.
         It then creates an object of the transaction and checks if the customer is eligable
         for a discount and updates price through the getDiscount method. Returns the object. 
     */
@@ -90,47 +73,63 @@ class Customer {
     }
 
     /* 
-        This creates a temptransaction from the createTransaction method and uses its values to update
-        the sum and totalNumberOfCups of the customer. It then pushes the transaction into our main transactions
-        array through the unshift method moving all transactions lower in the array.
-        After the transaction is complete it then updates membership status and the transactions in our html.
+        This creates a temptransaction from the createTransaction() method and uses its values to update
+        the sum and totalNumberOfCups of customer1. It then pushes the transaction into our main transactions
+        array through the unshift method moving all transactions lower in the array. After the transaction is 
+        complete it then updates membership status and the transactions <div id = "root"> in our html.
     */
     addTransaction(typeOfCoffee, numOfCups) {
-        let tempTransaction = this.createTransaction(typeOfCoffee, numOfCups)
-        this.totalNumberOfCups = parseInt(this.totalNumberOfCups) + parseInt(tempTransaction.numberOfCups)
-        this.sum += tempTransaction.numberOfCups * tempTransaction.price
-        this.transactions.unshift(tempTransaction)
-        this.updateMembershipStatusAndSum()
+        let emptyArray = this.createTransaction(typeOfCoffee, numOfCups)
+        this.totalNumberOfCups += parseInt(emptyArray.numberOfCups)
+        this.sum += emptyArray.numberOfCups * emptyArray.price
+        this.transactions.unshift(emptyArray)
+        this.getMembershipStatusAndSum()
         updateTransactionList()
     }
     
     // This checks totalNumberOfCups and updates html of membership status and sum.
-    updateMembershipStatusAndSum() {
+    getMembershipStatusAndSum() {
         const status = document.getElementById("membershipStatus")
             
         if (this.totalNumberOfCups >= 10 && this.totalNumberOfCups < 30) {
             this.membership = "SILVER"
-            status.className= "silverText"
+            status.className= "silverText"//changes css class to .silverText in index.css 
         } else if (this.totalNumberOfCups >= 30) {
             this.membership = "GOLD"
-            status.className = "goldText"
+            status.className = "goldText"//changes css class to .goldText in index.css
         }
-        status.innerHTML = `<span class ="goldText1">${this.membership}</span>`
-        document.getElementById("sum").innerHTML = `<span class ="goldText2">${this.sum}kr.</span>`
+        status.innerHTML = `${this.membership}`
+        document.getElementById("sum").innerHTML = `${this.sum}`
     }
-   
 }
 
+//This function updates our html select tag in index.html with values from the typesOfCoffee Array.
+function getSelectTag() {
+    typesOfCoffee.forEach(element => {
+        var parent = document.getElementById("menu")
+        var opt = document.createElement("option")
+        opt.text = `${element.name} - ${element.price}kr/cup`
+        opt.id = element.name
+        opt.name = element.name
+        parent.appendChild(opt)
+        console.log(opt)
+    })
+}
 //Updates the select tag.
-updateSelectTag()
+getSelectTag()
 
 //Creates a customer.
 let customer1 = new Customer()
 
+//Changes transaction heading tag.
+function updateTransactionHeading(){
+    document.getElementById("heading").innerHTML = "Your Transactions:"
+}
+
 //Updates the transactions HTML to display current transactions from the array.
 function updateTransactionList() {
-    document.getElementById("root").innerHTML = "";
     const parent = document.getElementById("root")
+    parent.innerHTML = ""
     var transaction = document.createElement("p")
 
     customer1.transactions.forEach(element => {
@@ -138,6 +137,7 @@ function updateTransactionList() {
         msg.innerHTML = `You have bought: ${element.numberOfCups} ${element.type} for ${element.price}kr/cup. For a total of: ${element.numberOfCups * element.price} kr\n`
         transaction.appendChild(msg)
     })
+
     parent.appendChild(transaction)
 }
 
@@ -161,14 +161,12 @@ function sendAlert(input) {
         alert("Max 10 cups per transaction!")
     } else if (input < 1) {
         alert("Please enter a Valid number!")
-    }else{
-    hideErrorMsg();
     }
 }
 
 /* 
-    This function serves only to reduce number of functions in onBuyButtonClick.
-    It gets all the values from our html. 
+    This function serves only to reduce number of functions in onBuyButtonClick().
+    It gets the input values from menu and numberOfCups. 
  */
 function getInput() {
     const inputCoffee = document.getElementById("menu")
@@ -179,8 +177,8 @@ function getInput() {
 }
 
 /* 
-    This is what triggers on the button click. It either getsInfo if isMoreThanZero returns the 
-    same as IsLessThanTen or sends the numberOfcups value from our html to the CheckInput function.
+    This is what triggers on the button click. It either getsInfo() if isMoreThanZero() returns the 
+    same as IsLessThanTen() or sends the numberOfcups value from our html to the getInput() function.
  */
 function onBuyButtonClick() {
     if (isMoreThanZero() == isLessThanTen()) {
@@ -189,13 +187,14 @@ function onBuyButtonClick() {
     } else {
         sendAlert(document.getElementById("numberOfCups").value)
     }
-    const test = document.getElementById("menu")
 
 }
 
 /* 
-Extra fun Coding
+Extra fun Code
 */
+
+//This function repairs the select tag after being altered by my eventlistener in populateFooter().
 function repairTag(input, price){
         var parent = document.getElementById("menu")
         var opt = document.createElement("option")
@@ -205,8 +204,8 @@ function repairTag(input, price){
         parent.appendChild(opt)
 }
 
-function populatefooter(){
-  
+//This function creates a button of each typesOfCoffee array elements and adds an eventlistener which uses repairtag() and remove() functions to edit the select tag "menu"
+function populateFooter(){
     typesOfCoffee.forEach(element => {
         var prnt = document.getElementById("footerButtons")
         const myButton = document.createElement("button")
@@ -215,6 +214,7 @@ function populatefooter(){
         myButton.type = "submit"
         myButton.id = element.name
         myButton.style.backgroundColor = "rgb(14, 116, 14)"
+        
         myButton.addEventListener("click", () => {
             var comp = myButton.style.backgroundColor;
             if(comp == "rgb(173, 36, 36)"){
@@ -229,6 +229,6 @@ function populatefooter(){
         prnt.appendChild(myButton)
     })
 }
-populatefooter()
+populateFooter()
 
 
