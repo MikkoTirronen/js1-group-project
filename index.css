@@ -2,11 +2,7 @@
     Css for my index.
 */
 
-.container{
-height: 100%;
-width: 100%;
-margin: auto;
-}
+
 .header{
     display:block;
     position: relative;
